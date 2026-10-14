@@ -462,7 +462,6 @@ input, textarea { font: inherit; color: inherit; }
   right: 12%;
   width: clamp(30px, 4vw, 48px);
   fill: var(--text);
-  animation: spin 14s linear infinite;
 }
 
 .call-badge {
@@ -481,13 +480,17 @@ input, textarea { font: inherit; color: inherit; }
   transition: transform 0.3s var(--ease);
 }
 .call-badge:hover { transform: scale(1.06); }
+/* The text ring turns only while hovered/focused: motion as an affordance
+   for the one CTA in the hero, not a perpetual loop. */
 .call-ring {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  animation: spin 16s linear infinite;
+  animation: spin 9s linear infinite paused;
 }
+.call-badge:hover .call-ring,
+.call-badge:focus-visible .call-ring { animation-play-state: running; }
 .call-ring text {
   font-family: var(--font-display);
   font-size: 10.6px;
@@ -516,10 +519,8 @@ input, textarea { font: inherit; color: inherit; }
   bottom: 0;
   z-index: 3;
   font-family: var(--font-display);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--muted);
 }
 
@@ -577,13 +578,14 @@ input, textarea { font: inherit; color: inherit; }
   gap: 16px;
   margin-bottom: clamp(40px, 6vw, 72px);
 }
-.section-eyebrow { display: flex; align-items: center; gap: 10px; }
-.section-eyebrow::before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  background: var(--accent);
-  box-shadow: 0 0 0 1.5px var(--text);
+/* Numbered "(01) About me" labels: sentence case, tight tracking, so they read
+   as editorial folios rather than shouted uppercase tags. */
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .section-title {
   max-width: 16ch;
@@ -604,62 +606,286 @@ input, textarea { font: inherit; color: inherit; }
   --bg: var(--dark-band);
 }
 
-.about-body {
-  display: grid;
-  gap: 20px;
-  max-width: 68ch;
-  margin-left: auto;
-  color: var(--muted);
-  font-size: 1.05rem;
+/* ---------- 8. About & Experience: the personal chapter ----------
+   Hairline frame + condensed headline + one serif italic word. The serif word
+   is the human voice against the engineered grotesk; used once per heading. */
+.frame { border: 1px solid var(--line); }
+.frame-row { padding: clamp(24px, 4vw, 56px); }
+.frame-row + .frame-row { border-top: 1px solid var(--line); }
+
+.mega {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-stretch: 72%;
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 7.4rem);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
-.about-body .lead {
-  color: var(--text);
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  line-height: 1.45;
+.serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.mega .serif { font-size: 1.08em; }
+
+/* About: intro */
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+}
+.about-lead {
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  line-height: 1.5;
   font-weight: 500;
 }
 
-/* ---------- 8. Experience ---------- */
-.xp {
+/* About: three numbered columns divided by hairlines */
+.about-cols {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 24px;
-  padding: 36px 0;
-  border-top: 1px solid var(--line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
 }
-.xp:last-child { border-bottom: 1px solid var(--line); }
-.xp-date {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.86rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 6px;
+.about-col {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: clamp(24px, 3.4vw, 44px);
 }
-.xp-role {
+.about-col + .about-col { border-left: 1px solid var(--line); }
+.col-num {
   font-family: var(--font-display);
+  font-stretch: 72%;
   font-weight: 900;
-  font-size: clamp(1.5rem, 3vw, 2.3rem);
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  font-size: 3.2rem;
   line-height: 1;
 }
-.xp-org { margin-top: 8px; color: var(--muted); font-size: 0.95rem; }
-.xp-points { display: grid; gap: 10px; margin-top: 20px; max-width: 72ch; }
-.xp-points li {
+.about-col h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+.about-col p { color: var(--muted); font-size: 0.97rem; }
+
+/* About: "what I care about" big-word list. Each proof line is always
+   readable; on hover it becomes a tilted lime sticker (the page's accent
+   moment for this chapter). */
+.care {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr);
+  gap: clamp(24px, 4vw, 64px);
+}
+.care-title {
+  font-family: var(--font-display);
+  font-stretch: 72%;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+.care-item {
   position: relative;
-  padding-left: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
+  align-items: center;
+  gap: 16px 24px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.care-item:last-child { border-bottom: 1px solid var(--line); }
+.care-word {
+  font-family: var(--font-display);
+  font-stretch: 72%;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  transition: transform 0.5s var(--ease);
+}
+.care-proof {
+  justify-self: end;
+  max-width: 15rem;
+  padding: 10px 12px;
+  font-size: 0.86rem;
+  line-height: 1.4;
   color: var(--muted);
-  font-size: 0.97rem;
+  border: 1px solid transparent;
+  transition: background 0.3s, color 0.3s, transform 0.5s var(--ease), border-color 0.3s;
+}
+@media (hover: hover) {
+  .care-item:hover .care-word { transform: translateX(14px); }
+  .care-item:hover .care-proof {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--on-accent);
+    transform: rotate(-4deg) scale(1.04);
+  }
+}
+
+/* Experience: study/work lanes on one time axis */
+.lanes { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.lanes-note { display: grid; gap: 8px; color: var(--muted); font-size: 0.97rem; }
+.lanes-figure {
+  font-family: var(--font-display);
+  font-stretch: 72%;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.9;
+  color: var(--text);
+}
+
+.lanes-chart { position: relative; display: grid; gap: 14px; padding-bottom: 30px; }
+.lane { display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: center; gap: 12px; }
+.lane-label { font-size: 0.86rem; font-weight: 600; }
+.lane-track { position: relative; height: 44px; border-bottom: 1px solid var(--line); }
+
+.bar {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: calc(var(--from) * 1%);
+  width: calc((var(--to) - var(--from)) * 1%);
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transform-origin: left center;
+}
+.bar-study { background: transparent; border: 1.5px solid var(--text); }
+.bar-work { background: var(--text); color: var(--bg); border-right: 2px solid var(--bg); transition: background 0.2s, color 0.2s; }
+.bar-work:hover,
+.bar-work:focus-visible { background: var(--accent); color: var(--on-accent); }
+/* Ongoing role: fade the right edge instead of drawing a hard end date. */
+.bar-now { -webkit-mask-image: linear-gradient(to right, #000 55%, transparent); mask-image: linear-gradient(to right, #000 55%, transparent); border-right: 0; }
+
+/* The overlap band spans both lanes; hatched so it reads as "both at once". */
+.overlap {
+  position: absolute;
+  top: -6px;
+  bottom: 24px;
+  left: calc(68px + (100% - 68px) * var(--from) / 100);
+  width: calc((100% - 68px) * (var(--to) - var(--from)) / 100);
+  background: repeating-linear-gradient(-45deg, transparent 0 6px, color-mix(in srgb, var(--accent) 70%, transparent) 6px 9px);
+  border-inline: 1.5px dashed var(--text);
+  pointer-events: none;
+  z-index: -1;
+}
+.lanes-chart { isolation: isolate; }
+
+.lane-axis {
+  position: absolute;
+  left: 68px;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.lane-axis li { border-left: 1px solid var(--line); padding-left: 6px; }
+
+/* Experience: role accordion */
+.xp-list { padding-block: 0; }
+.xp + .xp { border-top: 1px solid var(--line); }
+.xp summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr) 40px;
+  grid-template-areas: "date role toggle" "date org toggle";
+  align-items: center;
+  column-gap: 24px;
+  padding: 28px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.xp summary::-webkit-details-marker { display: none; }
+.xp summary::before {
+  /* Lime sweep on hover: the row is a control, so it gets the accent. */
+  content: '';
+  position: absolute;
+  inset: 0 calc(-1 * clamp(24px, 4vw, 56px));
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.45s var(--ease);
+  z-index: -1;
+}
+.xp summary { isolation: isolate; }
+.xp summary:hover::before,
+.xp summary:focus-visible::before { transform: scaleY(1); }
+.xp summary:hover,
+.xp summary:focus-visible { color: var(--on-accent); --muted: #3A3A3A; outline: none; }
+.xp summary:focus-visible { box-shadow: inset 0 0 0 2px var(--on-accent); }
+
+.xp-date { grid-area: date; font-size: 0.9rem; font-weight: 500; color: var(--muted); }
+.xp-role {
+  grid-area: role;
+  font-family: var(--font-display);
+  font-stretch: 72%;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.xp-org { grid-area: org; margin-top: 6px; font-size: 0.92rem; color: var(--muted); }
+.xp-toggle {
+  grid-area: toggle;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.xp-toggle::before,
+.xp-toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s var(--ease);
+}
+.xp-toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+.xp[open] .xp-toggle::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+.xp-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+  padding: 4px 0 36px calc(170px + 24px);
+  counter-reset: pt;
+}
+.xp-points li {
+  counter-increment: pt;
+  position: relative;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 .xp-points li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  top: 0;
+  content: counter(pt, decimal-leading-zero);
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
   color: var(--text);
-  font-size: 0.75rem;
 }
 
 /* ---------- 9. Work ---------- */
@@ -988,8 +1214,10 @@ body.modal-open {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .sparkle,
   .call-ring { animation: none; }
+  .care-word,
+  .care-proof,
+  .xp summary::before { transition: none; }
   .portrait { transition: none; }
   .modal[open] { animation: none; }
 }
@@ -1011,8 +1239,20 @@ body.modal-open {
   .stat:nth-child(2) { border-right: 0; }
   .stat:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
 
-  .xp { grid-template-columns: 1fr; gap: 10px; }
-  .xp-date { padding-top: 0; }
+  .about-intro,
+  .care,
+  .lanes { grid-template-columns: 1fr; }
+  .about-cols { grid-template-columns: 1fr; }
+  .about-col + .about-col { border-left: 0; border-top: 1px solid var(--line); }
+  .care-item { grid-template-columns: 1fr; gap: 6px; }
+  .care-proof { justify-self: start; max-width: none; padding: 0; }
+
+  .xp summary {
+    grid-template-columns: minmax(0, 1fr) 40px;
+    grid-template-areas: "date toggle" "role toggle" "org toggle";
+    row-gap: 4px;
+  }
+  .xp-points { grid-template-columns: 1fr; padding-left: 0; }
 
   .project-row { grid-template-columns: 40px minmax(0, 1fr); }
   .project-thumb { display: none; }
@@ -1022,6 +1262,16 @@ body.modal-open {
 
 @media (max-width: 560px) {
   .nav-cta { display: none; }
+  .frame { border-inline: 0; }
+  .frame-row { padding-inline: 0; }
+  .about-col { padding-inline: 0; }
+  .xp summary::before { inset: 0 calc(-1 * var(--gutter)); }
+  .lane { grid-template-columns: 44px minmax(0, 1fr); gap: 8px; }
+  .overlap { left: calc(52px + (100% - 52px) * var(--from) / 100); width: calc((100% - 52px) * (var(--to) - var(--from)) / 100); }
+  .lane-axis { left: 52px; font-size: 0.66rem; }
+  .lane-axis li { padding-left: 2px; }
+  .bar { padding-inline: 5px; font-size: 0.68rem; }
+  .lane-track { height: 53px; } /* bars become 44px tap targets */
   .field-row { grid-template-columns: 1fr; }
   .stat { padding: 28px 12px; }
   .stage-hint { display: none; }

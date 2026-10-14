@@ -118,15 +118,21 @@
     openProject(card.dataset.id, row);
   });
 
-  /* Animation loop: runs only while the hero is on screen. */
+  /* Animation loop: runs only while the hero is on screen. Auto-rotate cycles
+     all six projects past the viewer without interaction, and holds still
+     while the pointer is over the stage so a card can be read or clicked. */
   let visible = true;
+  let hovering = false;
   let rafId = 0;
+  stage.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hovering = true; });
+  stage.addEventListener('pointerleave', () => { hovering = false; });
 
   function tick() {
-    if (!dragging && (velocity || AUTO_SPEED)) {
+    const auto = hovering ? 0 : AUTO_SPEED;
+    if (!dragging && (velocity || auto)) {
       velocity *= 0.94;
       if (Math.abs(velocity) < 0.01) velocity = 0;
-      angle += velocity + AUTO_SPEED;
+      angle += velocity + auto;
       render();
     }
     rafId = visible ? requestAnimationFrame(tick) : 0;

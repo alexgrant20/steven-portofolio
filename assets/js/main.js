@@ -11,7 +11,7 @@ const PROJECTS = [
     id: 'logistics',
     title: 'B2B Logistics Tracking Platform',
     role: 'Lead Software Engineer',
-    period: 'Mar 2022 — Mar 2025',
+    period: 'Mar 2022 to Mar 2025',
     summary:
       'A live fleet management platform that replaced paper logs and WhatsApp check-ins for a working logistics operation.',
     tags: ['Laravel', 'MySQL', 'Responsive UI'],
@@ -29,7 +29,7 @@ const PROJECTS = [
       },
       {
         type: 'p',
-        text: 'The interface was built mobile-responsive from the start, and not as an afterthought — the primary users were drivers submitting entries from their phones at truck stops, often on poor connections. That constraint drove most of the front-end decisions: lightweight pages, forgiving forms, and as few round trips as possible.',
+        text: 'The interface was built mobile-responsive from the start, and not as an afterthought: the primary users were drivers submitting entries from their phones at truck stops, often on poor connections. That constraint drove most of the front-end decisions: lightweight pages, forgiving forms, and as few round trips as possible.',
       },
       { type: 'h', text: 'Outcome' },
       {
@@ -48,7 +48,7 @@ const PROJECTS = [
     id: 'companion-animal',
     title: 'Companion Animal Records',
     role: 'Undergraduate Thesis',
-    period: '2024 — 2025',
+    period: '2024 to 2025',
     summary:
       'Digitalisation of companion animal data storage and vaccination history, built and defended as a final-year thesis.',
     tags: ['Full-stack', 'Database design', 'Research'],
@@ -62,12 +62,12 @@ const PROJECTS = [
       { type: 'h', text: 'What I built' },
       {
         type: 'p',
-        text: 'An application for storing companion animal data and vaccination history in a structured, queryable form — modelling animals, owners, clinics, and immunisation events so that a history stays intact as it moves between them.',
+        text: 'An application for storing companion animal data and vaccination history in a structured, queryable form, modelling animals, owners, clinics, and immunisation events so that a history stays intact as it moves between them.',
       },
       { type: 'h', text: 'Why it mattered' },
       {
         type: 'p',
-        text: 'The thesis contributed to graduating with high academic distinction at a GPA of 3.84 out of 4.00. More usefully, it was the project where I had to defend design decisions rather than just ship them — the data model went through several revisions before it held up under questioning.',
+        text: 'The thesis contributed to graduating with high academic distinction at a GPA of 3.84 out of 4.00. More usefully, it was the project where I had to defend design decisions rather than just ship them: the data model went through several revisions before it held up under questioning.',
       },
     ],
     stack: {
@@ -80,7 +80,7 @@ const PROJECTS = [
     id: 'pisn',
     title: 'Penomoran Ijazah Dan Sertifikat Profesi Nasional',
     role: 'Programmer',
-    period: '2023 — 2024',
+    period: '2023 to 2024',
     summary:
       'A national-scale platform developed to standardize and verify the numbering of university diplomas and professional certificates across Indonesia.',
     tags: ['Full-stack', 'Database design', 'Code Review'],
@@ -112,7 +112,7 @@ const PROJECTS = [
     id: 'piln',
     title: 'Penyetaraan Ijazah Luar Negeri',
     role: 'Programmer',
-    period: '2022 — 2023',
+    period: '2022 to 2023',
     summary:
       'A digital service platform facilitating the equivalence evaluation and verification of foreign academic degrees for Indonesian citizens.',
     tags: ['Full-stack', 'Database design', 'Code Review'],
@@ -144,7 +144,7 @@ const PROJECTS = [
     id: 'ada',
     title: 'Binus Alumni Dashboard',
     role: 'Programmer',
-    period: '2024 — 2025',
+    period: '2024 to 2025',
     summary:
       'A centralized portal for university alumni to manage their professional profiles, access career resources, and maintain active engagement with the institution.',
     tags: ['Full-stack', 'Database design', 'Research'],
@@ -176,7 +176,7 @@ const PROJECTS = [
     id: 'bicar',
     title: 'Binus Career',
     role: 'Programmer',
-    period: '2025 — 2026',
+    period: '2025 to 2026',
     summary:
       'An enterprise-scale career portal and recruitment platform supporting over 150,000 active users, connecting students with top industry employers.',
     tags: ['Full-stack', 'Database design', 'Code Review'],
@@ -432,6 +432,8 @@ document.addEventListener('click', e => {
   if (!target) return;
 
   e.preventDefault();
+  // Timeline bars link to a role's <details>: open it on arrival.
+  if (target.tagName === 'DETAILS') target.open = true;
   const targetY = Math.max(
     target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET,
     0,
@@ -484,6 +486,13 @@ function initMotion() {
     onEnter: batch =>
       gsap.to(batch, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }),
   });
+
+  // Timeline: bars draw left to right in date order, then the overlap band
+  // lands, so the "studying while working" story reads as a sequence.
+  gsap
+    .timeline({ scrollTrigger: { trigger: '.lanes', start: 'top 75%', once: true } })
+    .from('.lanes .bar', { scaleX: 0, duration: 0.8, ease: 'power3.inOut', stagger: 0.18 })
+    .from('.lanes .overlap', { autoAlpha: 0, scaleY: 0.4, duration: 0.6, ease: 'power2.out' }, '-=0.2');
 
   // Light parallax: copy drifts up faster than the portrait while leaving the hero.
   if (window.innerWidth >= 960) {
@@ -630,7 +639,7 @@ contactForm?.addEventListener('submit', async e => {
       });
 
       contactForm.reset();
-      setStatus('Thanks — your message has been sent.', 'is-ok');
+      setStatus('Thanks, your message has been sent.', 'is-ok');
     } else {
       // EmailJS not configured yet — contact.php enforces the same IP
       // limit itself, so this path is guarded too.
@@ -651,7 +660,7 @@ contactForm?.addEventListener('submit', async e => {
       if (data.ok) {
         contactForm.reset();
         setStatus(
-          data.message || 'Thanks — your message has been sent.',
+          data.message || 'Thanks, your message has been sent.',
           'is-ok',
         );
       } else {
@@ -663,7 +672,7 @@ contactForm?.addEventListener('submit', async e => {
     }
   } catch (err) {
     setStatus(
-      'Could not send right now — please email me directly instead.',
+      'Could not send right now. Please email me directly instead.',
       'is-error',
     );
   } finally {
@@ -674,7 +683,7 @@ contactForm?.addEventListener('submit', async e => {
 
 // Surface the no-JS redirect result (contact.php sends ?sent=1 / ?sent=0).
 const sent = new URLSearchParams(location.search).get('sent');
-if (sent === '1') setStatus('Thanks — your message has been sent.', 'is-ok');
+if (sent === '1') setStatus('Thanks, your message has been sent.', 'is-ok');
 if (sent === '0')
   setStatus('Something went wrong. Please email me directly.', 'is-error');
 

@@ -49,7 +49,7 @@ function respond($ok, $message, $wantsJson) {
 
 // --- Honeypot: bots fill hidden fields, people do not -------------------
 if (!empty($_POST['website'])) {
-    respond(true, 'Thanks — your message has been sent.', $wantsJson); // silent drop
+    respond(true, 'Thanks, your message has been sent.', $wantsJson); // silent drop
 }
 
 // --- Validate -----------------------------------------------------------
@@ -95,6 +95,6 @@ $headers = [
 $sent = @mail($TO, $SUBJECT, $body, implode("\r\n", $headers));
 
 if ($sent) {
-    respond(true, 'Thanks — your message has been sent.', $wantsJson);
+    respond(true, 'Thanks, your message has been sent.', $wantsJson);
 }
 respond(false, 'Sorry, the message could not be sent. Please email me directly.', $wantsJson);
