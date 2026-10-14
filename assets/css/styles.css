@@ -52,12 +52,6 @@
   }
 }
 
-/* Lets CSS transition the reveal radius in .portrait. */
-@property --r {
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 0px;
-}
 
 /* ---------- 2. Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -420,8 +414,6 @@ input, textarea { font: inherit; color: inherit; }
 .ring.is-dragging .ring-card { cursor: grabbing; }
 
 .portrait {
-  --mx: 50%;
-  --my: 32%;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -430,12 +422,12 @@ input, textarea { font: inherit; color: inherit; }
   transform: translateX(-50%) translateZ(0);
   touch-action: pan-y;
   cursor: crosshair;
-  transition: --r 0.5s var(--ease);
   /* Fade the bottom edge into the page, like the reference. */
   -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
 }
-.portrait img {
+.portrait img,
+.portrait-paint {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -449,12 +441,12 @@ input, textarea { font: inherit; color: inherit; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .portrait-sketch { filter: invert(1) brightness(0.9); }
 }
-.portrait-photo {
-  -webkit-mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), #000 55%, transparent 100%);
-  mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), #000 55%, transparent 100%);
-}
-.portrait.is-active { --r: clamp(90px, 12vw, 150px); }
-.portrait.is-revealed { --r: 1400px; }
+/* The photo <img> stays in the DOM for its alt text and as the canvas source;
+   hero.js paints it into .portrait-paint through brush strokes. Click keeps
+   the whole photo. Without JS/canvas, the sketch alone shows. */
+.portrait-photo { opacity: 0; transition: opacity 0.6s var(--ease); }
+.portrait.is-revealed .portrait-photo { opacity: 1; }
+.portrait.is-revealed .portrait-paint { opacity: 0; }
 
 .sparkle {
   position: absolute;
@@ -1323,7 +1315,7 @@ body.modal-open {
   .care-word,
   .care-proof,
   .xp summary::before { transition: none; }
-  .portrait { transition: none; }
+  .portrait-photo { transition: none; }
   .modal[open] { animation: none; }
 }
 
