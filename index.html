@@ -516,17 +516,42 @@
   </footer>
 
   <!-- ============ PROJECT MODAL ============ -->
+  <!-- A case-study sheet: number + title head (sticky), the screenshot full
+       width on a dark slab with its real address, then text beside a facts
+       column, and a pager so projects can be read in sequence. -->
   <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
-    <button class="modal-close" type="button" aria-label="Close">&times;</button>
     <div class="modal-inner">
-      <div class="modal-hero"><img id="modal-img" src="" alt=""></div>
+      <header class="modal-head">
+        <span class="modal-num" id="modal-num" aria-hidden="true"></span>
+        <div class="modal-heading">
+          <p class="modal-meta" id="modal-meta"></p>
+          <h2 class="modal-title" id="modal-title"></h2>
+        </div>
+        <button class="modal-close" type="button" aria-label="Close">&times;</button>
+      </header>
+
+      <figure class="modal-shot">
+        <div class="shot-frame">
+          <p class="shot-bar">
+            <span class="shot-url" id="modal-url"></span>
+            <a class="shot-full" id="modal-full" href="" target="_blank" rel="noopener">Full size</a>
+          </p>
+          <img id="modal-img" src="" alt="" width="1900" height="900">
+        </div>
+      </figure>
+
       <div class="modal-body">
-        <p class="modal-meta" id="modal-meta"></p>
-        <h2 class="modal-title" id="modal-title"></h2>
         <div class="modal-text" id="modal-text"></div>
-        <div class="modal-stack" id="modal-stack"></div>
-        <div class="modal-links" id="modal-links"></div>
+        <aside class="modal-aside">
+          <div class="modal-stack" id="modal-stack"></div>
+          <div class="modal-links" id="modal-links"></div>
+        </aside>
       </div>
+
+      <nav class="modal-pager" aria-label="Other projects">
+        <button class="pager-btn" type="button" id="modal-prev"><span>Previous</span><strong></strong></button>
+        <button class="pager-btn pager-next" type="button" id="modal-next"><span>Next</span><strong></strong></button>
+      </nav>
     </div>
   </dialog>
 

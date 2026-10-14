@@ -255,21 +255,40 @@ function renderList() {
 let lastFocused = null;
 
 function openProject(id, trigger) {
-  const p = PROJECTS.find(x => x.id === id);
+  const i = PROJECTS.findIndex(x => x.id === id);
+  const p = PROJECTS[i];
   if (!p || !modal) return;
 
-  lastFocused = trigger || document.activeElement;
+  // Paging inside an open modal keeps the original trigger for focus return.
+  if (!modal.open) lastFocused = trigger || document.activeElement;
 
   const img = document.getElementById('modal-img');
   img.src = p.hero;
-  img.alt = p.title;
+  img.alt = `Screenshot of ${p.title}`;
   img.onerror = () => {
     img.onerror = null;
     img.src = placeholderThumb(p.title);
   };
 
-  document.getElementById('modal-meta').textContent = `${p.role} · ${p.period}`;
+  const live = (p.links || [])[0];
+  document.getElementById('modal-url').textContent = live
+    ? new URL(live.href).host
+    : 'Not publicly hosted';
+  document.getElementById('modal-full').href = p.hero;
+
+  document.getElementById('modal-num').textContent = String(i + 1).padStart(2, '0');
+  document.getElementById('modal-meta').textContent = `${p.role}, ${p.period}`;
   document.getElementById('modal-title').textContent = p.title;
+
+  const n = PROJECTS.length;
+  const prev = PROJECTS[(i - 1 + n) % n];
+  const next = PROJECTS[(i + 1) % n];
+  const prevBtn = document.getElementById('modal-prev');
+  const nextBtn = document.getElementById('modal-next');
+  prevBtn.dataset.id = prev.id;
+  nextBtn.dataset.id = next.id;
+  prevBtn.querySelector('strong').textContent = prev.title;
+  nextBtn.querySelector('strong').textContent = next.title;
 
   document.getElementById('modal-text').innerHTML = p.body
     .map(b => (b.type === 'h' ? `<h4>${b.text}</h4>` : `<p>${b.text}</p>`))
@@ -280,7 +299,7 @@ function openProject(id, trigger) {
       ([label, items]) => `
       <div class="stack-group">
         <span class="stack-label">${label}</span>
-        ${items.map(t => `<span class="tag">${t}</span>`).join('')}
+        <span class="tags">${items.map(t => `<span class="tag">${t}</span>`).join('')}</span>
       </div>`,
     )
     .join('');
@@ -288,21 +307,28 @@ function openProject(id, trigger) {
   document.getElementById('modal-links').innerHTML = (p.links || [])
     .map(
       l =>
-        `<a class="btn btn-ghost" href="${l.href}" target="_blank" rel="noopener">${l.label} <span class="arrow" aria-hidden="true">&#8599;</span></a>`,
+        `<a class="btn btn-dark" href="${l.href}" target="_blank" rel="noopener">${l.label} <span class="arrow" aria-hidden="true">&#8599;</span></a>`,
     )
     .join('');
 
-  // Measure the scrollbar before hiding it, so locking the page behind the
-  // modal doesn't shift the layout sideways.
-  const sbw = window.innerWidth - document.documentElement.clientWidth;
-  document.body.style.setProperty('--sbw', sbw + 'px');
-  document.body.classList.add('modal-open');
-
-  modal.showModal();
-  // Two possible scroll containers depending on breakpoint: the wrapper on
-  // narrow screens, the text column once the layout goes side-by-side.
+  if (!modal.open) {
+    // Measure the scrollbar before hiding it, so locking the page behind the
+    // modal doesn't shift the layout sideways.
+    const sbw = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.setProperty('--sbw', sbw + 'px');
+    document.body.classList.add('modal-open');
+    modal.showModal();
+  }
   modal.querySelector('.modal-inner').scrollTop = 0;
-  modal.querySelector('.modal-body').scrollTop = 0;
+
+  // The screenshot wipes in from the top: it's the reason to open the sheet.
+  if (hasGsap && !reduceMotion) {
+    gsap.fromTo(
+      '.modal-shot img',
+      { clipPath: 'inset(0 0 100% 0)', scale: 1.04 },
+      { clipPath: 'inset(0 0 0% 0)', scale: 1, duration: 0.9, ease: 'expo.out' },
+    );
+  }
 }
 
 if (modal) {
@@ -319,6 +345,16 @@ if (modal) {
       e.clientY >= r.top &&
       e.clientY <= r.bottom;
     if (!inside) modal.close();
+  });
+
+  ['modal-prev', 'modal-next'].forEach(btnId => {
+    const btn = document.getElementById(btnId);
+    btn?.addEventListener('click', () => openProject(btn.dataset.id));
+  });
+  // Arrow keys page through projects while the sheet is open.
+  modal.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') document.getElementById('modal-next').click();
+    if (e.key === 'ArrowLeft') document.getElementById('modal-prev').click();
   });
 
   modal.addEventListener('close', () => {
