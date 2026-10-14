@@ -328,6 +328,25 @@ if (modal) {
   });
 }
 
+/* ---------- Index refs (Toolkit, thesis) open the matching project ---------- */
+document.addEventListener('click', e => {
+  const ref = e.target.closest('button.ref[data-project]');
+  if (ref) openProject(ref.dataset.project, ref);
+});
+
+// Light every ref to the same project while one is hovered or focused.
+function lightRefs(e) {
+  const ref = e.target.closest?.('.ref[data-project]');
+  if (!ref) return;
+  const on = e.type === 'mouseover' || e.type === 'focusin';
+  document
+    .querySelectorAll(`.ref[data-project="${ref.dataset.project}"]`)
+    .forEach(r => r.classList.toggle('is-lit', on));
+}
+['mouseover', 'mouseout', 'focusin', 'focusout'].forEach(t =>
+  document.getElementById('skills')?.addEventListener(t, lightRefs),
+);
+
 /* ---------- Theme ---------- */
 const root = document.documentElement;
 const stored = (() => {

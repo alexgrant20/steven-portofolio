@@ -48,7 +48,8 @@
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#work">Work</a></li>
-        <li><a href="#skills">Skills</a></li>
+        <li><a href="#skills">Toolkit</a></li>
+        <li><a href="#education">Education</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -75,7 +76,7 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#work">Work</a>
-      <a href="#skills">Skills</a>
+      <a href="#skills">Toolkit</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
@@ -346,50 +347,58 @@
     </section>
 
     <!-- ============ SKILLS ============ -->
-    <section id="skills" class="section">
-      <div class="section-head">
+    <!-- Set like the index at the back of a book: each tool points to where it
+         actually shipped. Numbers match the Work list (01 to 06) and open that
+         project; role refs jump to Experience. No ref = used, nothing on this page shows it. -->
+    <section id="skills" class="section toolkit">
+      <div class="toolkit-head">
         <p class="section-eyebrow reveal">(04) Toolkit</p>
-        <h2 class="section-title reveal">What I work with.</h2>
+        <h2 class="index-title reveal">Index<span class="serif">of tools &amp; where they shipped</span></h2>
+        <p class="index-legend reveal">Numbers point to projects in <a href="#work">(03) Selected work</a>. Tap one
+          to open it.</p>
       </div>
 
-      <div class="skill-groups">
-        <div class="skill-group reveal">
-          <h3>Languages</h3>
+      <div class="index-cols">
+        <div class="index-group reveal">
+          <h3 class="index-cat serif">Languages</h3>
           <ul>
-            <li>C#</li>
-            <li>PHP</li>
-            <li>TypeScript</li>
-            <li>JavaScript</li>
-            <li>SQL</li>
+            <li class="index-entry"><span class="index-term">C#</span><span class="index-refs"><button class="ref" type="button" data-project="ada" aria-label="Project 05, Binus Alumni Dashboard">05</button><button class="ref" type="button" data-project="bicar" aria-label="Project 06, Binus Career">06</button></span></li>
+            <li class="index-entry"><span class="index-term">PHP</span><span class="index-refs"><button class="ref" type="button" data-project="logistics" aria-label="Project 01, B2B Logistics Tracking Platform">01</button><button class="ref" type="button" data-project="companion-animal" aria-label="Project 02, Companion Animal Records">02</button><button class="ref" type="button" data-project="pisn" aria-label="Project 03, Penomoran Ijazah Dan Sertifikat Profesi Nasional">03</button><button class="ref" type="button" data-project="piln" aria-label="Project 04, Penyetaraan Ijazah Luar Negeri">04</button></span></li>
+            <li class="index-entry"><span class="index-term">TypeScript</span><span class="index-refs"><button class="ref" type="button" data-project="ada" aria-label="Project 05, Binus Alumni Dashboard">05</button></span></li>
+            <li class="index-entry"><span class="index-term">JavaScript</span><span class="index-refs"><button class="ref" type="button" data-project="logistics" aria-label="Project 01, B2B Logistics Tracking Platform">01</button><button class="ref" type="button" data-project="companion-animal" aria-label="Project 02, Companion Animal Records">02</button><button class="ref" type="button" data-project="pisn" aria-label="Project 03, Penomoran Ijazah Dan Sertifikat Profesi Nasional">03</button><button class="ref" type="button" data-project="piln" aria-label="Project 04, Penyetaraan Ijazah Luar Negeri">04</button></span></li>
+            <li class="index-entry"><span class="index-term">SQL</span><span class="index-refs"><span class="ref-note">every project</span></span></li>
           </ul>
         </div>
-        <div class="skill-group reveal">
-          <h3>Frameworks</h3>
+
+        <div class="index-group reveal">
+          <h3 class="index-cat serif">Frameworks</h3>
           <ul>
-            <li>.NET</li>
-            <li>Laravel</li>
-            <li>React.js</li>
-            <li>Next.js</li>
-            <li>Node.js</li>
+            <li class="index-entry"><span class="index-term">.NET</span><span class="index-refs"><button class="ref" type="button" data-project="ada" aria-label="Project 05, Binus Alumni Dashboard">05</button><button class="ref" type="button" data-project="bicar" aria-label="Project 06, Binus Career">06</button></span></li>
+            <li class="index-entry"><span class="index-term">Laravel</span><span class="index-refs"><button class="ref" type="button" data-project="logistics" aria-label="Project 01, B2B Logistics Tracking Platform">01</button><button class="ref" type="button" data-project="companion-animal" aria-label="Project 02, Companion Animal Records">02</button><button class="ref" type="button" data-project="pisn" aria-label="Project 03, Penomoran Ijazah Dan Sertifikat Profesi Nasional">03</button><button class="ref" type="button" data-project="piln" aria-label="Project 04, Penyetaraan Ijazah Luar Negeri">04</button></span></li>
+            <li class="index-entry"><span class="index-term">React.js</span><span class="index-refs"><button class="ref" type="button" data-project="ada" aria-label="Project 05, Binus Alumni Dashboard">05</button><button class="ref" type="button" data-project="bicar" aria-label="Project 06, Binus Career">06</button></span></li>
+            <li class="index-entry"><span class="index-term">Next.js</span></li>
+            <li class="index-entry"><span class="index-term">Node.js</span></li>
           </ul>
         </div>
-        <div class="skill-group reveal">
-          <h3>Databases</h3>
+
+        <div class="index-group reveal">
+          <h3 class="index-cat serif">Databases</h3>
           <ul>
-            <li>SQL Server</li>
-            <li>MySQL</li>
-            <li>PostgreSQL</li>
+            <li class="index-entry"><span class="index-term">SQL Server</span><span class="index-refs"><button class="ref" type="button" data-project="ada" aria-label="Project 05, Binus Alumni Dashboard">05</button><button class="ref" type="button" data-project="bicar" aria-label="Project 06, Binus Career">06</button></span></li>
+            <li class="index-entry"><span class="index-term">MySQL</span><span class="index-refs"><button class="ref" type="button" data-project="logistics" aria-label="Project 01, B2B Logistics Tracking Platform">01</button><button class="ref" type="button" data-project="companion-animal" aria-label="Project 02, Companion Animal Records">02</button><button class="ref" type="button" data-project="pisn" aria-label="Project 03, Penomoran Ijazah Dan Sertifikat Profesi Nasional">03</button><button class="ref" type="button" data-project="piln" aria-label="Project 04, Penyetaraan Ijazah Luar Negeri">04</button></span></li>
+            <li class="index-entry"><span class="index-term">PostgreSQL</span></li>
           </ul>
         </div>
-        <div class="skill-group reveal">
-          <h3>DevOps &amp; Architecture</h3>
+
+        <div class="index-group reveal">
+          <h3 class="index-cat serif">DevOps &amp; architecture</h3>
           <ul>
-            <li>Git</li>
-            <li>GitHub Actions</li>
-            <li>Docker</li>
-            <li>Hangfire</li>
-            <li>RESTful APIs</li>
-            <li>SSL Configuration</li>
+            <li class="index-entry"><span class="index-term">GitHub Actions</span><span class="index-refs"><a class="ref ref-word" href="#xp-programmer">Programmer</a></span></li>
+            <li class="index-entry"><span class="index-term">Hangfire</span><span class="index-refs"><a class="ref ref-word" href="#xp-senior">Senior</a></span></li>
+            <li class="index-entry"><span class="index-term">RESTful APIs</span><span class="index-refs"><a class="ref ref-word" href="#xp-junior">Junior</a><a class="ref ref-word" href="#xp-senior">Senior</a></span></li>
+            <li class="index-entry"><span class="index-term">Docker</span><span class="index-refs"><a class="ref ref-word" href="#education">studying</a></span></li>
+            <li class="index-entry"><span class="index-term">Git</span></li>
+            <li class="index-entry"><span class="index-term">SSL Configuration</span></li>
           </ul>
         </div>
       </div>
@@ -413,47 +422,48 @@
     -->
 
     <!-- ============ EDUCATION & LANGUAGES ============ -->
+    <!-- Laid out like a transcript sheet: one big grade, the thesis as the
+         record's pull quote, then what's still in progress and how I talk. -->
     <section id="education" class="section">
-      <div class="section-head">
-        <p class="section-eyebrow reveal">(05) Education &amp; languages</p>
-        <h2 class="section-title reveal">Study, certification &amp; languages.</h2>
-      </div>
+      <article class="transcript">
+        <header class="transcript-head">
+          <p class="section-eyebrow reveal">(05) Education &amp; languages</p>
+          <p class="transcript-meta reveal">Bina Nusantara University, Jakarta<br>2020 to 2025</p>
+        </header>
 
-      <div class="edu-grid">
-        <article class="card reveal">
-          <p class="card-date">2020 to 2025</p>
-          <h3>Bachelor of Computer Science</h3>
-          <p class="card-org">Bina Nusantara University · Jakarta, Indonesia</p>
-          <p class="card-meta">GPA 3.84 / 4.00, graduated with high academic distinction</p>
-          <p class="card-desc">Specialised in streaming databases, software engineering, system analysis, and web
-            application development. Thesis: <em>Analysis and Development of an Application for the Digitalization of
-              Companion Animal's Data Storage and Vaccination History.</em></p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card-date">In progress, expected Aug 2026</p>
-          <h3>Docker and Kubernetes: The Complete Guide</h3>
-          <p class="card-org">Certification</p>
-          <p class="card-desc">Deepening container orchestration and deployment practice alongside existing Docker and
-            CI/CD work.</p>
-        </article>
-
-        <article class="card card-lang reveal">
-          <h3>Languages</h3>
-          <div class="lang">
-            <div class="lang-top"><span>Indonesian</span><span class="lang-level">Native</span></div>
-            <div class="lang-meter" role="img" aria-label="Native proficiency"><span style="--level:100%"></span>
-            </div>
+        <div class="transcript-grade">
+          <p class="grade reveal"><span class="grade-num">3.84</span><span class="grade-of">/ 4.00</span></p>
+          <div class="grade-side reveal">
+            <h2 class="grade-degree">Bachelor of Computer Science</h2>
+            <p>Graduated with high academic distinction. The last two and a half years ran alongside a full-time job.</p>
+            <p class="grade-focus">Focus: streaming databases, software engineering, system analysis, web application
+              development.</p>
           </div>
-          <div class="lang">
-            <div class="lang-top"><span>English</span><span class="lang-level">Professional working</span></div>
-            <div class="lang-meter" role="img" aria-label="Professional working proficiency"><span
-                style="--level:78%"></span></div>
+        </div>
+
+        <figure class="thesis reveal">
+          <p class="thesis-label">Thesis</p>
+          <blockquote class="serif">Analysis and Development of an Application for the Digitalization of Companion
+            Animal's Data Storage and Vaccination History.</blockquote>
+          <figcaption><button class="ref ref-word" type="button" data-project="companion-animal">See it as project 02</button></figcaption>
+        </figure>
+
+        <div class="transcript-foot">
+          <div class="cert reveal">
+            <p class="status">In progress</p>
+            <h3>Docker and Kubernetes: The Complete Guide</h3>
+            <p>Certification, expected Aug 2026. Deepening container orchestration alongside existing Docker and CI/CD
+              work.</p>
           </div>
-          <p class="card-desc">Comfortable reading and writing technical material (specifications, API documentation,
-            code review) and holding working conversations with international collaborators.</p>
-        </article>
-      </div>
+
+          <ul class="speak reveal" aria-label="Languages">
+            <li><span class="speak-word serif" lang="id">Halo.</span><span><strong>Indonesian</strong> Native. Daily
+                team talk, documentation, stakeholder discussions.</span></li>
+            <li><span class="speak-word serif">Hello.</span><span><strong>English</strong> Professional working.
+                Specs, API docs, code review, and working conversations.</span></li>
+          </ul>
+        </div>
+      </article>
     </section>
 
     <!-- ============ CONTACT ============ -->
