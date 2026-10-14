@@ -34,6 +34,16 @@ The hero design layers your photo *between* two layers of type, so it needs a
 Free background removal: [remove.bg](https://remove.bg), or Photoshop's
 *Select Subject*, or the Photos app on Windows 11.
 
+Then regenerate the pencil-sketch layer the hero reveals it from (needs
+`pip install pillow`; the tool is not deployed):
+
+```
+python tools/make-sketch.py
+```
+
+Update the `width`/`height` attributes on both `.portrait` images in
+`index.html` to the new photo's size.
+
 Until that file exists the page shows a grey silhouette placeholder. Nothing
 breaks — the layout and animations are already correct — but the design does not
 land without the real cut-out.

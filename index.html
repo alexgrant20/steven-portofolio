@@ -7,7 +7,7 @@
   <title>Steven Alexander Grant — Senior Programmer</title>
   <meta name="description"
     content="Senior Programmer and full-stack developer with 4 years of enterprise engineering experience building national-scale government systems and academic platforms with .NET, React, and Laravel.">
-  <meta name="theme-color" content="#FCFBF9">
+  <meta name="theme-color" content="#E6E4E0">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Steven Alexander Grant — Senior Programmer">
@@ -16,15 +16,21 @@
   <meta property="og:image" content="assets/img/og.jpg">
 
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23D97706'/><text x='50' y='73' font-family='Arial,sans-serif' font-size='62' font-weight='800' fill='%23FCFBF9' text-anchor='middle'>S</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='72' font-family='Arial,sans-serif' font-size='62' font-weight='900' fill='%23D4FF3A' text-anchor='middle'>S</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Hide the hero headline until main.js has split it for the intro animation.
+       The timeout is a failsafe so content still shows if scripts never run. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () { document.documentElement.classList.add('ready'); }, 2500);
+  </script>
 </head>
 
 <body>
@@ -33,22 +39,19 @@
 
   <header class="nav-wrap">
     <nav class="nav" aria-label="Primary">
-      <!-- <p class="status"><span class="status-dot" aria-hidden="true"></span> <span class="status-text">Available for new
-          opportunities</span></p> -->
+      <a class="brand" href="#main" aria-label="Steven Grant, back to top">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-name">STEVEN</span>
+      </a>
 
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience <span class="count">[4y]</span></a></li>
-        <li><a href="#work">Work <span class="count">[2]</span></a></li>
-        <li><a href="#skills">Skills <span class="count">[18]</span></a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
-          aria-controls="mobile-menu">
-          <span class="menu-bar" aria-hidden="true"></span>
-          <span class="menu-bar" aria-hidden="true"></span>
-        </button>
         <button class="theme-toggle" type="button" aria-label="Switch colour theme">
           <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="4.5" />
@@ -59,7 +62,12 @@
             <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
           </svg>
         </button>
-        <a class="btn btn-dark" href="#contact">Let's Talk <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="btn btn-dark nav-cta" href="#contact">Contact me <span class="arrow" aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+          aria-controls="mobile-menu">
+          <span class="menu-bar" aria-hidden="true"></span>
+          <span class="menu-bar" aria-hidden="true"></span>
+        </button>
       </div>
     </nav>
 
@@ -69,7 +77,6 @@
       <a href="#work">Work</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
-      <a href="#languages">Languages</a>
       <a href="#contact">Contact</a>
     </div>
   </header>
@@ -78,49 +85,79 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" aria-labelledby="hero-name">
-      <div class="hero-card">
-        <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow"><span class="dot" aria-hidden="true"></span> Currently at Bina Nusantara IT
+          Division</p>
 
         <h1 class="hero-name" id="hero-name">
-          <span class="name-outline reveal-word" style="--i:0">STEVEN</span>
-          <span class="name-solid reveal-word" style="--i:1">GRANT</span>
+          <span class="split">STEVEN</span>
+          <span class="split">GRANT</span>
         </h1>
+        <h2 class="hero-role"><span class="split">SENIOR PROGRAMMER</span></h2>
 
-        <div class="hero-portrait">
-          <img src="assets/img/portrait.png"
-            onerror="this.onerror=null;this.src='assets/img/portofolio.png';this.closest('.hero-portrait').classList.add('is-placeholder')"
-            alt="Steven Alexander Grant" width="900" height="1200">
-        </div>
-
-        <div class="hero-role">
-          <p class="eyebrow"><em>currently</em> — Bina Nusantara IT Division</p>
-          <h2 class="role-title">Senior Programmer</h2>
-          <p class="role-desc">Full-stack developer building national-scale government systems and academic platforms
-            with .NET, React, and Laravel.</p>
-          <a class="btn btn-dark btn-lg magnetic" href="#contact">Let's collaborate <span class="arrow"
-              aria-hidden="true">↗</span></a>
+        <div class="hero-proof">
+          <span class="proof-badge" aria-hidden="true">★</span>
+          <p><strong>150K+ users</strong> rely on systems I've shipped — from national government platforms to a
+            university career portal.</p>
         </div>
 
         <ul class="hero-links">
-          <li><a class="pill" href="https://linkedin.com/in/stevenalexgrant/" target="_blank" rel="noopener"><svg
-                class="pill-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></li>
-          <li><a class="pill" href="mailto:stevenalexandergrant@gmail.com"><svg class="pill-ico" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
-                <path d="m3 7 8.1 5.6a1.6 1.6 0 0 0 1.8 0L21 7" />
-              </svg>Email <span class="arrow" aria-hidden="true">↗</span></a></li>
-          <li><a class="pill" href="assets/Steven_Alexander_Grant_CV.pdf" download><svg class="pill-ico"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <path d="M14 2.5H7A2 2 0 0 0 5 4.5v15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z" />
-                <path d="M14 2.5v5h5M9 13.5h6M9 17h4" />
-              </svg>Download CV <span class="arrow" aria-hidden="true">↓</span></a></li>
+          <li><a class="pill" href="https://linkedin.com/in/stevenalexgrant/" target="_blank" rel="noopener">LinkedIn
+              <span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li><a class="pill" href="mailto:stevenalexandergrant@gmail.com">Email <span class="arrow"
+                aria-hidden="true">↗</span></a></li>
+          <li><a class="pill pill-dark" href="assets/Steven_Alexander_Grant_CV.pdf" download>Download CV <span
+                class="arrow" aria-hidden="true">↓</span></a></li>
         </ul>
       </div>
+
+      <div class="hero-stage">
+        <div class="scene">
+          <!-- Cards are generated from PROJECTS by hero.js. Duplicates the Work list, so hidden from AT. -->
+          <div class="ring" aria-hidden="true"></div>
+
+          <div class="portrait" title="Move over the drawing to colour it · click to keep the photo">
+            <img class="portrait-sketch" src="assets/img/portrait-sketch.png" alt="" width="472" height="538">
+            <img class="portrait-photo" src="assets/img/portrait.png"
+              onerror="this.onerror=null;this.src='assets/img/portofolio.png'" alt="Steven Alexander Grant"
+              width="472" height="538">
+          </div>
+        </div>
+
+        <svg class="sparkle" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 0c1.6 11 8.4 17.8 20 20-11.6 2.2-18.4 9-20 20C18.4 29 11.6 22.2 0 20 11.6 17.8 18.4 11 20 0z" />
+        </svg>
+
+        <!-- TODO: replace href with https://wa.me/<number> once the WhatsApp number is supplied. -->
+        <a class="call-badge" href="#contact" aria-label="Schedule a call">
+          <svg class="call-ring" viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <path id="badge-circle" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0" />
+            </defs>
+            <text>
+              <textPath href="#badge-circle">SCHEDULE A CALL • SCHEDULE A CALL •</textPath>
+            </text>
+          </svg>
+          <span class="call-arrow" aria-hidden="true">↗</span>
+        </a>
+        <svg class="scribble" viewBox="0 0 120 90" fill="none" aria-hidden="true">
+          <path d="M6 82c18-6 30-18 26-30-4-11-18-6-14 4 5 13 34 10 52-8 12-12 22-26 34-38" />
+          <path d="M92 8l12 2-3 12" />
+        </svg>
+
+        <p class="stage-hint" aria-hidden="true">Hover to colour · drag the cards to spin</p>
+      </div>
+    </section>
+
+    <!-- ============ LOGO STRIP ============ -->
+    <!-- TODO: swap the text wordmarks for approved logo SVGs in assets/img/logos/. -->
+    <section class="logos" aria-label="Organisations I have built for">
+      <ul class="logo-row">
+        <li>BINUS University</li>
+        <li>Kemdiktisaintek</li>
+        <li>BINUS Career</li>
+        <li>BINUS Alumni</li>
+      </ul>
     </section>
 
     <!-- ============ STATS ============ -->
@@ -129,9 +166,9 @@
         <li class="stat reveal"><span class="stat-num" data-to="4" data-suffix=" yrs">0</span><span
             class="stat-label">Enterprise engineering</span></li>
         <li class="stat reveal"><span class="stat-num" data-to="6" data-suffix="+">0</span><span
-            class="stat-label">Project Delivered</span></li>
+            class="stat-label">Projects delivered</span></li>
         <li class="stat reveal"><span class="stat-num" data-to="10" data-suffix="+">0</span><span
-            class="stat-label">Team Member Led</span></li>
+            class="stat-label">Team members led</span></li>
         <li class="stat reveal"><span class="stat-num" data-to="3.84" data-decimals="2">0</span><span
             class="stat-label">GPA out of 4.00</span></li>
       </ul>
@@ -140,54 +177,38 @@
     <!-- ============ ABOUT ============ -->
     <section id="about" class="section">
       <div class="section-head">
-        <p class="section-eyebrow reveal"><em>about</em></p>
-        <h2 class="section-title reveal">Four years shipping<br>software that had to work.</h2>
+        <p class="section-eyebrow reveal">01 — About me</p>
+        <h2 class="section-title reveal">Four years shipping software that had to work.</h2>
       </div>
 
-      <div class="section-cols">
-        <div class="about-body">
-          <p class="reveal">I am a full-stack developer with four years of enterprise software engineering experience —
-            two and a half of them spent working full time while finishing a Bachelor of Computer Science. It was a
-            demanding way to learn, and it taught me to ship under real constraints rather than ideal ones.</p>
-          <p class="reveal">Most of my work has been on systems people cannot opt out of: national government platforms,
-            a career portal for a 150,000-strong alumni network, a graduation eligibility engine processing millions of
-            student records. Software like that fails loudly, so I have a strong bias toward transactional integrity,
-            clear data modelling, and code review as a habit rather than a ceremony.</p>
-          <p class="reveal">These days I lead a small engineering team, which mostly means unblocking other people —
-            pair programming through architectural dead ends, enforcing patterns that keep a codebase legible, and
-            making sure releases go out on time.</p>
-        </div>
-        <div class="col-art col-art--about reveal">
-          <svg class="lines-art" viewBox="0 0 320 440" fill="none" aria-hidden="true">
-            <circle cx="176" cy="196" r="132" />
-            <circle cx="176" cy="196" r="98" />
-            <circle cx="176" cy="196" r="64" />
-            <path d="M24 356c72-16 128-58 152-160C198 98 244 46 300 34" />
-            <path d="M12 404c92-18 160-74 188-196 20-88 62-136 118-150" opacity="0.65" />
-            <circle cx="176" cy="64" r="6" class="lines-node lines-node--fill" />
-            <circle cx="176" cy="294" r="5" class="lines-node" />
-            <circle cx="274" cy="196" r="4" class="lines-node" />
-          </svg>
-        </div>
+      <div class="about-body">
+        <p class="reveal lead">I am a full-stack developer with four years of enterprise software engineering
+          experience — two and a half of them spent working full time while finishing a Bachelor of Computer Science.
+          It was a demanding way to learn, and it taught me to ship under real constraints rather than ideal ones.</p>
+        <p class="reveal">Most of my work has been on systems people cannot opt out of: national government platforms,
+          a career portal for a 150,000-strong alumni network, a graduation eligibility engine processing millions of
+          student records. Software like that fails loudly, so I have a strong bias toward transactional integrity,
+          clear data modelling, and code review as a habit rather than a ceremony.</p>
+        <p class="reveal">These days I lead a small engineering team, which mostly means unblocking other people —
+          pair programming through architectural dead ends, enforcing patterns that keep a codebase legible, and
+          making sure releases go out on time.</p>
       </div>
     </section>
 
     <!-- ============ EXPERIENCE ============ -->
     <section id="experience" class="section">
       <div class="section-head">
-        <p class="section-eyebrow reveal"><em>experience</em></p>
-        <h2 class="section-title reveal">Where I have<br>been working.</h2>
+        <p class="section-eyebrow reveal">02 — Experience</p>
+        <h2 class="section-title reveal">Where I have been working.</h2>
       </div>
 
-      <div class="section-cols">
-
-        <ol class="timeline">
-          <li class="tl-item reveal">
-            <div class="tl-marker" aria-hidden="true"></div>
-            <p class="tl-date">Apr 2026 — Present</p>
-            <h3 class="tl-role">Senior Programmer</h3>
-            <p class="tl-org">Bina Nusantara IT Division</p>
-            <ul class="tl-points">
+      <ol class="xp-list">
+        <li class="xp reveal">
+          <p class="xp-date">Apr 2026 — Now</p>
+          <div class="xp-main">
+            <h3 class="xp-role">Senior Programmer</h3>
+            <p class="xp-org">Bina Nusantara IT Division · Jakarta</p>
+            <ul class="xp-points">
               <li>Engineered the BINUS Career portal with React, .NET, and SQL Server for a 150,000+ alumni network,
                 replacing fragmented email workflows with a centralised Applicant Tracking System across a 12-month
                 Agile lifecycle.</li>
@@ -199,15 +220,15 @@
               <li>Directed technical execution for four engineers — enforcing the Repository Pattern and SQL
                 optimisation through code review, and clearing UAT architectural blockers by pair programming.</li>
             </ul>
-          </li>
+          </div>
+        </li>
 
-          <li class="tl-item reveal">
-            <div class="tl-marker" aria-hidden="true"></div>
-            <p class="tl-date">Apr 2024 — Apr 2026</p>
-            <h3 class="tl-role">Programmer</h3>
-            <p class="tl-org">Bina Nusantara IT Division <span class="tl-note">· full-time, concurrent with studies
-                until Apr 2025</span></p>
-            <ul class="tl-points">
+        <li class="xp reveal">
+          <p class="xp-date">Apr 2024 — Apr 2026</p>
+          <div class="xp-main">
+            <h3 class="xp-role">Programmer</h3>
+            <p class="xp-org">Bina Nusantara IT Division · full-time, concurrent with studies until Apr 2025</p>
+            <ul class="xp-points">
               <li>Built the BINUS Alumni Dashboard in React, TypeScript, and .NET — a seven-month project featuring an
                 Excel-driven bulk processing engine with multi-stage approval workflows and ACID-compliant transactions.
               </li>
@@ -217,15 +238,15 @@
                 code, eliminating build failures without provisioning more hardware.</li>
               <li>Led React architecture workshops and pre-production code reviews for a team of five.</li>
             </ul>
-          </li>
+          </div>
+        </li>
 
-          <li class="tl-item reveal">
-            <div class="tl-marker" aria-hidden="true"></div>
-            <p class="tl-date">Sep 2022 — Apr 2024</p>
-            <h3 class="tl-role">Junior Programmer</h3>
-            <p class="tl-org">Bina Nusantara IT Division <span class="tl-note">· full-time, concurrent with
-                studies</span></p>
-            <ul class="tl-points">
+        <li class="xp reveal">
+          <p class="xp-date">Sep 2022 — Apr 2024</p>
+          <div class="xp-main">
+            <h3 class="xp-role">Junior Programmer</h3>
+            <p class="xp-org">Bina Nusantara IT Division · full-time, concurrent with studies</p>
+            <ul class="xp-points">
               <li>Delivered the national PILN and PISN government systems on six-to-seven-month lifecycles, driving
                 every SDLC phase from ERD design through UAT, penetration testing, and production deployment.</li>
               <li>Engineered an automated graduation eligibility engine in Laravel, processing bulk uploads and running
@@ -235,33 +256,26 @@
               <li>Held 100% on-time monthly releases while leading debugging and review sessions for seven associate
                 developers.</li>
             </ul>
-          </li>
-        </ol>
-
-        <div class="col-art reveal">
-          <svg class="lines-art" viewBox="0 0 320 460" fill="none" aria-hidden="true">
-            <path d="M18 40C126 74 190 150 172 246c-14 76-88 118-142 130" />
-            <path d="M50 26C170 62 238 146 218 250c-16 82-96 128-156 140" />
-            <path d="M82 12C214 50 286 142 264 254c-18 88-104 138-170 150" />
-            <circle cx="172" cy="246" r="5" class="lines-node" />
-            <circle cx="50" cy="26" r="4" class="lines-node" />
-            <circle cx="264" cy="254" r="6" class="lines-node lines-node--fill" />
-          </svg>
-        </div>
-      </div>
+          </div>
+        </li>
+      </ol>
     </section>
 
     <!-- ============ WORK ============ -->
-    <section id="work" class="section">
-      <p class="section-eyebrow reveal"><em>selected</em> work</p>
-      <h2 class="section-title reveal">Things I built<br>end to end.</h2>
+    <section id="work" class="section section-dark">
+      <div class="section-head">
+        <p class="section-eyebrow reveal">03 — Selected work</p>
+        <h2 class="section-title reveal">Things I built end to end.</h2>
+      </div>
       <ul class="project-list" id="project-list"></ul>
     </section>
 
     <!-- ============ SKILLS ============ -->
     <section id="skills" class="section">
-      <p class="section-eyebrow reveal"><em>toolkit</em></p>
-      <h2 class="section-title reveal">What I work with.</h2>
+      <div class="section-head">
+        <p class="section-eyebrow reveal">04 — Toolkit</p>
+        <h2 class="section-title reveal">What I work with.</h2>
+      </div>
 
       <div class="skill-groups">
         <div class="skill-group reveal">
@@ -306,72 +320,77 @@
       </div>
     </section>
 
-    <!-- ============ EDUCATION ============ -->
+    <!-- ============ TESTIMONIALS ============ -->
+    <!-- TODO: uncomment once 2–4 real quotes are supplied. Never ship invented ones.
+    <section id="testimonials" class="section">
+      <div class="section-head">
+        <p class="section-eyebrow reveal">05 — Testimonials</p>
+        <h2 class="section-title reveal">What people I've worked with say.</h2>
+      </div>
+      <div class="quote-grid">
+        <figure class="quote reveal">
+          <blockquote>“Quote text.”</blockquote>
+          <figcaption><img src="assets/img/testimonials/name.jpg" alt="" width="44" height="44">
+            <span><strong>Full Name</strong> Role, Organisation</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    -->
+
+    <!-- ============ EDUCATION & LANGUAGES ============ -->
     <section id="education" class="section">
-      <p class="section-eyebrow reveal"><em>education</em></p>
-      <h2 class="section-title reveal">Study &amp;<br>Certification.</h2>
+      <div class="section-head">
+        <p class="section-eyebrow reveal">05 — Education &amp; languages</p>
+        <h2 class="section-title reveal">Study, certification &amp; languages.</h2>
+      </div>
 
       <div class="edu-grid">
-        <article class="edu-card reveal">
-          <p class="edu-date">2020 — 2025</p>
+        <article class="card reveal">
+          <p class="card-date">2020 — 2025</p>
           <h3>Bachelor of Computer Science</h3>
-          <p class="edu-org">Bina Nusantara University · Jakarta, Indonesia</p>
-          <p class="edu-meta">GPA 3.84 / 4.00 — graduated with high academic distinction</p>
-          <p class="edu-desc">Specialised in streaming databases, software engineering, system analysis, and web
+          <p class="card-org">Bina Nusantara University · Jakarta, Indonesia</p>
+          <p class="card-meta">GPA 3.84 / 4.00 — graduated with high academic distinction</p>
+          <p class="card-desc">Specialised in streaming databases, software engineering, system analysis, and web
             application development. Thesis: <em>Analysis and Development of an Application for the Digitalization of
               Companion Animal's Data Storage and Vaccination History.</em></p>
         </article>
 
-        <article class="edu-card reveal">
-          <p class="edu-date">In progress — expected Aug 2026</p>
+        <article class="card reveal">
+          <p class="card-date">In progress — expected Aug 2026</p>
           <h3>Docker and Kubernetes: The Complete Guide</h3>
-          <p class="edu-org">Certification</p>
-          <p class="edu-desc">Deepening container orchestration and deployment practice alongside existing Docker and
+          <p class="card-org">Certification</p>
+          <p class="card-desc">Deepening container orchestration and deployment practice alongside existing Docker and
             CI/CD work.</p>
         </article>
-      </div>
-    </section>
 
-
-    <!-- ============ LANGUAGES ============ -->
-    <section id="languages" class="section">
-      <p class="section-eyebrow reveal"><em>languages</em></p>
-      <h2 class="section-title reveal">Languages I<br>work in.</h2>
-
-      <div class="lang-grid">
-        <article class="lang-card reveal">
-          <div class="lang-top">
-            <h3>Indonesian</h3>
-            <span class="lang-badge lang-badge--native">Native</span>
+        <article class="card card-lang reveal">
+          <h3>Languages</h3>
+          <div class="lang">
+            <div class="lang-top"><span>Indonesian</span><span class="lang-level">Native</span></div>
+            <div class="lang-meter" role="img" aria-label="Native proficiency"><span style="--level:100%"></span>
+            </div>
           </div>
-          <div class="lang-meter" role="img" aria-label="Native proficiency">
-            <span class="lang-fill" style="--level:100%"></span>
+          <div class="lang">
+            <div class="lang-top"><span>English</span><span class="lang-level">Professional working</span></div>
+            <div class="lang-meter" role="img" aria-label="Professional working proficiency"><span
+                style="--level:78%"></span></div>
           </div>
-          <p class="lang-desc">First language. Used daily for team communication, technical documentation, and
-            stakeholder discussions across every project I have delivered.</p>
-        </article>
-
-        <article class="lang-card reveal">
-          <div class="lang-top">
-            <h3>English</h3>
-            <span class="lang-badge">Professional working</span>
-          </div>
-          <div class="lang-meter" role="img" aria-label="Professional working proficiency">
-            <span class="lang-fill" style="--level:78%"></span>
-          </div>
-          <p class="lang-desc">Comfortable reading and writing technical material — specifications, API documentation,
-            code review, and written correspondence — and holding working conversations with international
-            collaborators.</p>
+          <p class="card-desc">Comfortable reading and writing technical material — specifications, API documentation,
+            code review — and holding working conversations with international collaborators.</p>
         </article>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="section contact">
-      <p class="section-eyebrow reveal"><em>contact</em></p>
-      <h2 class="section-title contact-title reveal">Let's build<br>something solid.</h2>
-      <p class="contact-desc reveal">Open to senior engineering roles and genuinely hard problems. The fastest way to
-        reach me is email.</p>
+      <div class="contact-head">
+        <p class="section-eyebrow reveal">06 — Contact</p>
+        <h2 class="contact-title reveal">LET'S BUILD <span class="hl">SOMETHING</span> SOLID.</h2>
+        <p class="contact-desc reveal">Open to senior engineering roles and genuinely hard problems. The fastest way
+          to reach me is email.</p>
+        <a class="btn btn-ghost reveal" href="mailto:stevenalexandergrant@gmail.com">stevenalexandergrant@gmail.com
+          <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
 
       <form class="contact-form reveal" id="contact-form" action="contact.php" method="post">
         <div class="field-row">
@@ -399,23 +418,17 @@
         </div>
 
         <div class="form-foot">
-          <button class="btn btn-dark btn-lg" type="submit" id="cf-submit">Send message <span class="arrow"
-              aria-hidden="true">↗</span></button>
+          <button class="btn btn-accent btn-lg magnetic" type="submit" id="cf-submit">Send message <span
+              class="arrow" aria-hidden="true">↗</span></button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </div>
       </form>
-
-      <div class="contact-actions reveal">
-        <a class="btn btn-ghost" href="mailto:stevenalexandergrant@gmail.com">Email directly <span class="arrow"
-            aria-hidden="true">↗</span></a>
-        <!-- <a class="btn btn-ghost" href="https://linkedin.com/in/stevenalexgrant/" target="_blank" rel="noopener">LinkedIn
-          <span class="arrow" aria-hidden="true">↗</span></a> -->
-      </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Steven Alexander Grant</p>
+    <p>© Steven Alexander Grant</p>
+    <a href="#main">Back to top ↑</a>
   </footer>
 
   <!-- ============ PROJECT MODAL ============ -->
@@ -433,8 +446,11 @@
     </div>
   </dialog>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/hero.js"></script>
 </body>
 
 </html>

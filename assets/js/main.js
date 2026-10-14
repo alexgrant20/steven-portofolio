@@ -1,6 +1,7 @@
 /* ==========================================================================
    Steven Alexander Grant — Portfolio
-   Vanilla JS, no dependencies.
+   Plain JS. GSAP + ScrollTrigger (CDN) drive the motion; everything still
+   works without them. Hero portrait + 3D ring live in hero.js.
    Add a project by appending one object to PROJECTS and dropping two images
    into assets/img/projects/. Nothing else needs to change.
    ========================================================================== */
@@ -213,11 +214,11 @@ const modal = document.getElementById('project-modal');
 function placeholderThumb(title) {
   // Inline SVG stand-in so rows look intentional before real screenshots land.
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
-    <rect width="320" height="200" fill="#F5F3EF"/>
-    <rect x="16" y="16" width="288" height="168" rx="10" fill="none" stroke="#E4DFD6" stroke-dasharray="7 6"/>
-    <circle cx="160" cy="92" r="26" fill="none" stroke="#D97706" stroke-width="2"/>
-    <path d="M150 92h20M160 82v20" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
-    <text x="160" y="140" font-family="Arial,sans-serif" font-size="11" fill="#6B6459" text-anchor="middle">screenshot pending</text>
+    <rect width="320" height="200" fill="#F2F1EE"/>
+    <rect x="16" y="16" width="288" height="168" fill="none" stroke="#C9C7C2" stroke-dasharray="7 6"/>
+    <circle cx="160" cy="92" r="26" fill="#D4FF3A" stroke="#111" stroke-width="2"/>
+    <path d="M150 92h20M160 82v20" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+    <text x="160" y="140" font-family="Arial,sans-serif" font-size="11" fill="#5B5B5B" text-anchor="middle">screenshot pending</text>
   </svg>`;
   return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }
@@ -230,17 +231,17 @@ function renderList() {
     <li>
       <button class="project-row" type="button" data-id="${p.id}"
               aria-haspopup="dialog" aria-label="Open details for ${p.title}">
-        <span class="project-thumb">
-          <img src="${p.thumb}" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='${placeholderThumb(p.title)}'">
-        </span>
+        <span class="project-num">${String(i + 1).padStart(2, '0')}</span>
         <span class="project-info">
-          <span class="project-num">${String(i + 1).padStart(2, '0')} / ${p.role}</span>
+          <span class="project-role">${p.role} · ${p.period}</span>
           <span class="project-title">${p.title}</span>
           <span class="project-summary">${p.summary}</span>
           <span class="tag-row">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</span>
         </span>
-        <span class="project-open" aria-hidden="true">&#8599;</span>
+        <span class="project-thumb">
+          <img src="${p.thumb}" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='${placeholderThumb(p.title)}'">
+        </span>
       </button>
     </li>
   `,
@@ -354,7 +355,7 @@ document.querySelector('.theme-toggle')?.addEventListener('click', () => {
 
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', next === 'dark' ? '#100E0A' : '#FCFBF9');
+    ?.setAttribute('content', next === 'dark' ? '#0E0E0E' : '#E6E4E0');
 });
 
 /* ---------- Mobile menu ---------- */
@@ -439,22 +440,64 @@ document.addEventListener('click', e => {
   history.pushState(null, '', id);
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-in');
-      obs.unobserve(entry.target);
-    });
-  },
-  { threshold: 0.12, rootMargin: '0px 0px -60px 0px' },
-);
+/* ---------- GSAP motion ---------- */
+/* Content is visible by default; GSAP only hides what it is about to animate.
+   If the CDN fails or motion is reduced, nothing is ever hidden. */
+const hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
-function observeReveals() {
-  document.querySelectorAll('.reveal:not(.is-in)').forEach((el, i) => {
-    el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
-    revealObserver.observe(el);
+function splitChars(el) {
+  const text = el.textContent;
+  el.setAttribute('aria-label', text);
+  el.innerHTML = [...text]
+    .map(c => `<span class="char" aria-hidden="true">${c === ' ' ? '&nbsp;' : c}</span>`)
+    .join('');
+}
+
+function initMotion() {
+  if (!hasGsap || reduceMotion) {
+    root.classList.add('ready');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Intro: hero letters rise out of their clipped lines.
+  document.querySelectorAll('.hero .split').forEach(splitChars);
+  gsap.set('.hero .char', { yPercent: 115 });
+  root.classList.add('ready');
+
+  gsap
+    .timeline({ defaults: { ease: 'expo.out' } })
+    .to('.hero-name .char', { yPercent: 0, duration: 1.2, stagger: 0.04 })
+    .to('.hero-role .char', { yPercent: 0, duration: 0.9, stagger: 0.015 }, '-=0.9')
+    .from('.hero-stage', { autoAlpha: 0, scale: 0.94, duration: 1.4 }, '-=1.1')
+    .from(
+      '.hero-eyebrow, .hero-proof, .hero-links',
+      { autoAlpha: 0, y: 24, duration: 0.9, stagger: 0.1 },
+      '-=1.1',
+    );
+
+  // Section content fades up as it scrolls in.
+  gsap.set('.reveal', { autoAlpha: 0, y: 40 });
+  ScrollTrigger.batch('.reveal', {
+    start: 'top 88%',
+    once: true,
+    onEnter: batch =>
+      gsap.to(batch, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }),
   });
+
+  // Light parallax: copy drifts up faster than the portrait while leaving the hero.
+  if (window.innerWidth >= 960) {
+    gsap.to('.hero-copy', {
+      yPercent: -12,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero-stage', {
+      yPercent: 8,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+  }
 }
 
 /* ---------- Stat counters ---------- */
@@ -652,39 +695,8 @@ function initMagnetic() {
   });
 }
 
-/* ---------- Hero parallax ---------- */
-function initParallax() {
-  const name = document.querySelector('.hero-name');
-  // Target the <img>, not .hero-portrait: that element runs an entrance
-  // animation with fill-mode forwards, which would outrank an inline transform.
-  const portrait = document.querySelector('.hero-portrait img');
-  if (!name || !portrait || reduceMotion) return;
-  if (window.innerWidth < 900) return;
-
-  let ticking = false;
-
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (ticking) return;
-      ticking = true;
-
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (y < window.innerHeight) {
-          name.style.transform = `translateY(${y * 0.18}px)`;
-          portrait.style.transform = `translateY(${y * -0.05}px)`;
-        }
-        ticking = false;
-      });
-    },
-    { passive: true },
-  );
-}
-
 /* ---------- Boot ---------- */
 renderList();
-observeReveals();
+initMotion();
 document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
 initMagnetic();
-initParallax();
