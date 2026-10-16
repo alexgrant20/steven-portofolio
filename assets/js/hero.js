@@ -139,7 +139,7 @@
     card.className = 'ring-card';
     card.tabIndex = -1; // duplicate of the Work list, which is the keyboard path
     card.dataset.id = p.id;
-    card.innerHTML = `<img src="${p.thumb}" alt="" loading="lazy" draggable="false"><span>${p.title}</span>`;
+    card.innerHTML = `<img src="${p.thumb}" alt="" loading="lazy" draggable="false">`;
     ring.appendChild(card);
     return card;
   });

@@ -375,12 +375,12 @@ input, textarea { font: inherit; color: inherit; }
 .ring-card {
   position: absolute;
   width: var(--card-w, 176px);
-  aspect-ratio: 16 / 10;
+  /* aspect-ratio: 16 / 9; */
   margin-left: calc(var(--card-w, 176px) / -2);
   margin-top: calc(var(--card-w, 176px) * -0.3125);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.5);
+  /* background: var(--surface); */
+  /* border: 1px solid var(--line); */
+  /* box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.5); */
   overflow: hidden;
   cursor: grab;
   touch-action: pan-y;
@@ -394,23 +394,7 @@ input, textarea { font: inherit; color: inherit; }
   pointer-events: none;
   -webkit-user-drag: none;
 }
-.ring-card span {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 6px 10px;
-  background: var(--text);
-  color: var(--bg);
-  font-family: var(--font-display);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
 .ring.is-dragging .ring-card { cursor: grabbing; }
 
 .portrait {
@@ -437,9 +421,9 @@ input, textarea { font: inherit; color: inherit; }
   pointer-events: none;
   user-select: none;
 }
-:root[data-theme="dark"] .portrait-sketch { filter: invert(1) brightness(0.9); }
+:root[data-theme="dark"] .portrait-sketch { filter: invert(0.2) brightness(0.9); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .portrait-sketch { filter: invert(1) brightness(0.9); }
+  :root:not([data-theme="light"]) .portrait-sketch { filter: invert(0.2) brightness(0.9); }
 }
 /* The photo <img> stays in the DOM for its alt text and as the canvas source;
    hero.js paints it into .portrait-paint through brush strokes. Click keeps
@@ -447,14 +431,6 @@ input, textarea { font: inherit; color: inherit; }
 .portrait-photo { opacity: 0; transition: opacity 0.6s var(--ease); }
 .portrait.is-revealed .portrait-photo { opacity: 1; }
 .portrait.is-revealed .portrait-paint { opacity: 0; }
-
-.sparkle {
-  position: absolute;
-  top: 8%;
-  right: 12%;
-  width: clamp(30px, 4vw, 48px);
-  fill: var(--text);
-}
 
 .call-badge {
   position: absolute;
