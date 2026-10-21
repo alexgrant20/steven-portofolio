@@ -15,8 +15,8 @@ const PROJECTS = [
     summary:
       'A live fleet management platform that replaced paper logs and WhatsApp check-ins for a working logistics operation.',
     tags: ['Laravel', 'MySQL', 'Responsive UI'],
-    thumb: 'assets/img/projects/sanlogistic-thumb.png',
-    hero: 'assets/img/projects/sanlogistic-hero.png',
+    thumb: 'assets/img/projects/sanlogistic-thumb.avif',
+    hero: 'assets/img/projects/sanlogistic-hero.jpg',
     body: [
       {
         type: 'p',
@@ -52,8 +52,8 @@ const PROJECTS = [
     summary:
       'Digitalisation of companion animal data storage and vaccination history, built and defended as a final-year thesis.',
     tags: ['Full-stack', 'Database design', 'Research'],
-    thumb: 'assets/img/projects/peta-thumb.png',
-    hero: 'assets/img/projects/peta-hero.png',
+    thumb: 'assets/img/projects/peta-thumb.avif',
+    hero: 'assets/img/projects/peta-hero.jpg',
     body: [
       {
         type: 'p',
@@ -84,8 +84,8 @@ const PROJECTS = [
     summary:
       'A national-scale platform developed to standardize and verify the numbering of university diplomas and professional certificates across Indonesia.',
     tags: ['Full-stack', 'Database design', 'Code Review'],
-    thumb: 'assets/img/projects/pisn-thumb.png',
-    hero: 'assets/img/projects/pisn-hero.png',
+    thumb: 'assets/img/projects/pisn-thumb.avif',
+    hero: 'assets/img/projects/pisn-hero.jpg',
     body: [
       {
         type: 'p',
@@ -116,8 +116,8 @@ const PROJECTS = [
     summary:
       'A digital service platform facilitating the equivalence evaluation and verification of foreign academic degrees for Indonesian citizens.',
     tags: ['Full-stack', 'Database design', 'Code Review'],
-    thumb: 'assets/img/projects/piln-thumb.png',
-    hero: 'assets/img/projects/piln-hero.png',
+    thumb: 'assets/img/projects/piln-thumb.avif',
+    hero: 'assets/img/projects/piln-hero.jpg',
     body: [
       {
         type: 'p',
@@ -148,8 +148,8 @@ const PROJECTS = [
     summary:
       'A centralized portal for university alumni to manage their professional profiles, access career resources, and maintain active engagement with the institution.',
     tags: ['Full-stack', 'Database design', 'Research'],
-    thumb: 'assets/img/projects/ada-thumb.png',
-    hero: 'assets/img/projects/ada-hero.png',
+    thumb: 'assets/img/projects/ada-thumb.svg',
+    hero: 'assets/img/projects/ada-hero.jpg',
     body: [
       {
         type: 'p',
@@ -180,8 +180,8 @@ const PROJECTS = [
     summary:
       'An enterprise-scale career portal and recruitment platform supporting over 150,000 active users, connecting students with top industry employers.',
     tags: ['Full-stack', 'Database design', 'Code Review'],
-    thumb: 'assets/img/projects/career-thumb.png',
-    hero: 'assets/img/projects/career-hero.png',
+    thumb: 'assets/img/projects/career-thumb.avif',
+    hero: 'assets/img/projects/career-hero.jpg',
     body: [
       {
         type: 'p',

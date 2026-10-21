@@ -117,9 +117,9 @@
           <div class="ring" aria-hidden="true"></div>
 
           <div class="portrait" title="Move over the drawing to colour it · click to keep the photo">
-            <img class="portrait-sketch" src="assets/img/portrait-sketch.png" alt="" width="472" height="538">
+            <img class="portrait-sketch" src="assets/img/portrait-sketch.avif" alt="" width="472" height="538">
             <img class="portrait-photo" src="assets/img/portrait.png"
-              onerror="this.onerror=null;this.src='assets/img/portofolio.png'" alt="Steven Alexander Grant"
+              onerror="this.onerror=null;this.src='assets/img/portofolio.avif'" alt="Steven Alexander Grant"
               width="472" height="538">
             <canvas class="portrait-paint" aria-hidden="true"></canvas>
           </div>
@@ -280,16 +280,12 @@
               <span class="xp-toggle" aria-hidden="true"></span>
             </summary>
             <ul class="xp-points">
-              <li>Engineered the BINUS Career portal with React, .NET, and SQL Server for a 150,000+ alumni network,
-                replacing fragmented email workflows with a centralised Applicant Tracking System across a 12-month
-                Agile lifecycle.</li>
-              <li>Architected a B2B checkout engine and dynamic voucher system handling quota and product-category
-                constraints, plus a ground-up SNAP VA BCA payment gateway integration built with mock-driven testing.
-              </li>
-              <li>Designed an asynchronous social marketing scheduler on Hangfire and Meta API v24.0, letting corporate
-                partners queue time-delayed job listings.</li>
-              <li>Directed technical execution for four engineers, enforcing the Repository Pattern and SQL
-                optimisation through code review, and clearing UAT architectural blockers by pair programming.</li>
+              <li>Building an offline-first PWA for a national occupational health provider: branch staff register patients, print QR control cards, and import patient data without internet, syncing on reconnect (Next.js, Laravel, IndexedDB).</li>
+              <li>Prevented duplicate registrations and cross-device conflicts by designing the PWA's sync layer (idempotent sync, conflict resolution, incremental downloads, role-scoped endpoints), covered with PHPUnit tests.</li>
+              <li>Migrated BINUS Career's BCA Virtual Account payments (130,000+ alumni network) to Bank Indonesia's SNAP open-API standard in .NET 8, with signature verification and duplicate-payment protection. Passed BCA's multi-stage UAT.</li>
+              <li>Extended BINUS Career with checkout voucher logic, a token-secured public Open API, and scheduled Instagram auto-posting of partner job listings (Hangfire, Meta Graph API).</li>
+              <li>Cleaned and migrated ~4M legacy student records from the old PDDIKTI data source to the new one using Laravel scripts.</li>
+              <li>Sped up code reviews for a 4-person team with AI-assisted first-pass reviews (Claude, Codex) that I validate before approval, and guide teammates through technical problem-solving.</li>
             </ul>
           </details>
 
@@ -301,14 +297,12 @@
               <span class="xp-toggle" aria-hidden="true"></span>
             </summary>
             <ul class="xp-points">
-              <li>Built the BINUS Alumni Dashboard in React, TypeScript, and .NET: a seven-month project featuring an
-                Excel-driven bulk processing engine with multi-stage approval workflows and ACID-compliant transactions.
-              </li>
-              <li>Parachuted into a stalled cross-functional Student Violation module, onboarding to an unfamiliar
-                React/.NET codebase and clearing month-old architecture blockers within a week.</li>
-              <li>Stabilised the GitHub Actions CI/CD pipeline by profiling builds and refactoring memory-intensive
-                code, eliminating build failures without provisioning more hardware.</li>
-              <li>Led React architecture workshops and pre-production code reviews for a team of five.</li>
+              <li>Owned the Alumni Update module of the BINUS Alumni Dashboard (React, .NET), managing 130,000+ alumni records over a 5-month delivery: change history, bulk Excel updates (1,000 rows per upload), and campus-scoped approvals with email notifications.</li>
+              <li>Made Prominent Alumni queries 10× faster with server-side pagination, and eliminated export timeouts with a Hangfire background job (retry and paging).</li>
+              <li>Fixed out-of-memory build failures in the Azure DevOps pipeline by refactoring memory-heavy frontend code with a colleague, without upgrading build hardware.</li>
+              <li>Rescued the stalled Student Violation project after the original developer's work proved unreliable, delivering the Appeal module end-to-end (React, .NET) within two weeks.</li>
+              <li>Built Company Registration and Voucher Coupon features from scratch for BINUS Career (React), plus reusable table and select components for the Alumni Dashboard.</li>
+              <li>Led a React best-practices and performance workshop for ~20 developers.</li>
             </ul>
           </details>
 
@@ -320,14 +314,11 @@
               <span class="xp-toggle" aria-hidden="true"></span>
             </summary>
             <ul class="xp-points">
-              <li>Delivered the national PILN and PISN government systems on six-to-seven-month lifecycles, driving
-                every SDLC phase from ERD design through UAT, penetration testing, and production deployment.</li>
-              <li>Engineered an automated graduation eligibility engine in Laravel, processing bulk uploads and running
-                background jobs to sync 2.7M+ national student records with the PDDIKTI API centre.</li>
-              <li>Architected a multi-tier RBAC verification workflow (Verificator, Assessor, Director) for processing
-                foreign degree equivalencies.</li>
-              <li>Held 100% on-time monthly releases while leading debugging and review sessions for seven associate
-                developers.</li>
+              <li>Built the core operator modules of PISN (eligibility checks, certificate enlistment, bulk certificate generation), the platform Indonesian universities must use to issue national diploma numbers: 8,200+ operators, 9.2M+ numbers issued.</li>
+              <li>Developed the PILN admin review workflows that ministry validators use to process diploma equalization and score conversion requests.</li>
+              <li>Mentored 7 associate developers across both projects (3 on PILN, 4 on PISN) through PR reviews and pair debugging.</li>
+              <li>Remediated medium-to-critical findings from the ministry's penetration test on PISN, flagged false positives, and removed ~10.5K lines of unused legacy code to shrink the attack surface.</li>
+              <li>Collaborated with the System Analyst on ERD and UI/UX design for PILN admin modules, and integrated Google reCAPTCHA into authentication forms.</li>
             </ul>
           </details>
         </div>
@@ -393,7 +384,7 @@
             <li class="index-entry"><span class="index-term">GitHub Actions</span><span class="index-refs"><a class="ref ref-word" href="#xp-programmer">Programmer</a></span></li>
             <li class="index-entry"><span class="index-term">Hangfire</span><span class="index-refs"><a class="ref ref-word" href="#xp-senior">Senior</a></span></li>
             <li class="index-entry"><span class="index-term">RESTful APIs</span><span class="index-refs"><a class="ref ref-word" href="#xp-junior">Junior</a><a class="ref ref-word" href="#xp-senior">Senior</a></span></li>
-            <li class="index-entry"><span class="index-term">Docker</span><span class="index-refs"><a class="ref ref-word" href="#education">studying</a></span></li>
+            <li class="index-entry"><span class="index-term">Docker</span></li>
             <li class="index-entry"><span class="index-term">Git</span></li>
             <li class="index-entry"><span class="index-term">SSL Configuration</span></li>
           </ul>
@@ -447,16 +438,23 @@
 
         <div class="transcript-foot">
           <div class="cert reveal">
-            <p class="status">In progress</p>
-            <h3>Docker and Kubernetes: The Complete Guide</h3>
-            <p>Certification, expected Aug 2026. Deepening container orchestration alongside existing Docker and CI/CD
-              work.</p>
+            <h3>Licenses &amp; certifications</h3>
+            <ul class="cert-list">
+              <li><span class="cert-name">Memulai Pemrograman dengan Python</span><span class="cert-meta">Dicoding Indonesia · Jun 2026</span></li>
+              <li><span class="cert-name">Belajar Dasar AI</span><span class="cert-meta">Dicoding Indonesia · Jun 2026</span></li>
+              <li><span class="cert-name">Prompt Engineering untuk Software Developer</span><span class="cert-meta">Dicoding Indonesia · Jun 2026</span></li>
+              <li><span class="cert-name">Introduction to Financial Literacy</span><span class="cert-meta">Dicoding Indonesia · Jun 2026</span></li>
+              <li><span class="cert-name">EF SET English Certificate 77/100 (C2 Proficient)</span><span class="cert-meta">EF SET · Jan 2026</span></li>
+              <li><span class="cert-name">Google Looker Studio</span><span class="cert-meta">MySkill · Feb 2025</span></li>
+              <li><span class="cert-name">Kursus Git</span><span class="cert-meta">Progate · Aug 2022</span></li>
+              <li><span class="cert-name">Responsive Web Design</span><span class="cert-meta">freeCodeCamp · Feb 2022</span></li>
+            </ul>
           </div>
 
           <ul class="speak reveal" aria-label="Languages">
             <li><span class="speak-word serif" lang="id">Halo.</span><span><strong>Indonesian</strong> Native. Daily
                 team talk, documentation, stakeholder discussions.</span></li>
-            <li><span class="speak-word serif">Hello.</span><span><strong>English</strong> Professional working.
+            <li><span class="speak-word serif">Hello.</span><span><strong>English</strong> C2 Proficient (EF SET 77/100).
                 Specs, API docs, code review, and working conversations.</span></li>
           </ul>
         </div>

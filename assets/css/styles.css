@@ -1071,15 +1071,10 @@ input, textarea { font: inherit; color: inherit; }
 }
 .cert { display: grid; align-content: start; gap: 10px; }
 .cert h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; line-height: 1.15; }
-.cert p:last-child { color: var(--muted); font-size: 0.93rem; }
-/* Real state label: the certification is genuinely unfinished. */
-.status {
-  justify-self: start;
-  padding: 3px 10px;
-  border: 1.5px solid var(--text);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
+.cert-list { display: grid; }
+.cert-list li { display: grid; gap: 2px; padding: 9px 0; border-top: 1px solid var(--line, currentColor); }
+.cert-name { font-weight: 600; font-size: 0.95rem; }
+.cert-meta { color: var(--muted); font-size: 0.85rem; }
 
 .speak { display: grid; gap: 18px; }
 .speak li { display: grid; grid-template-columns: minmax(6.5rem, auto) minmax(0, 1fr); gap: 18px; align-items: baseline; }
